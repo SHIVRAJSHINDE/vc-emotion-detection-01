@@ -53,7 +53,7 @@ def load_data(file_path: str) -> pd.DataFrame:
         logger.error('Unexpected error occurred while loading the data: %s', e)
         raise
 
-def apply_tfidf(train_data: pd.DataFrame, test_data: pd.DataFrame, max_features: int) -> tuple:
+def apply_Tfidf(train_data: pd.DataFrame, test_data: pd.DataFrame, max_features: int) -> tuple:
     """Apply TfIdf to the data."""
     try:
         vectorizer = TfidfVectorizer(max_features=max_features)
@@ -96,7 +96,7 @@ def main():
         train_data = load_data('./data/interim/train_processed.csv')
         test_data = load_data('./data/interim/test_processed.csv')
 
-        train_df, test_df = apply_tfidf(train_data, test_data, max_features)
+        train_df, test_df = apply_Tfidf(train_data, test_data, max_features)
 
         save_data(train_df, os.path.join("./data", "processed", "train_tfidf.csv"))
         save_data(test_df, os.path.join("./data", "processed", "test_tfidf.csv"))
